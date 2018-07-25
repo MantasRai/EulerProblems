@@ -10,8 +10,8 @@ namespace EulerProblem1
         {
             Console.WriteLine("Solving Euler problem: 1");
 
-            IMultiplesController pathController = new MultiplesController();
-            var multiples = pathController.FindMultiples(1000);
+            IMultiplesController multiplesController = new MultiplesController();
+            var multiples = multiplesController.FindMultiples(1000);
 
             var watch = System.Diagnostics.Stopwatch.StartNew();
 
