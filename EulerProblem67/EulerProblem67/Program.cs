@@ -8,11 +8,21 @@ namespace EulerProblem67
 {
     internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
+            SolveTheProblem(18);
+            SolveTheProblem(67);
+
+            Console.ReadLine();
+        }
+
+        private static void SolveTheProblem(int problemNr)
+        {
+            Console.WriteLine($"Solving Euler problem: {problemNr}");
+
             var watch = System.Diagnostics.Stopwatch.StartNew();
 
-            IPyramideController pyramid = new PyramidController(GetInputValues());
+            IPyramideController pyramid = new PyramidController(GetInputValues(problemNr));
             IPathController pathController = new PathController(pyramid);
 
             var path = pathController.GetSuitablePath();
@@ -20,7 +30,7 @@ namespace EulerProblem67
             watch.Stop();
 
             Console.WriteLine("Result: " + path.Sum);
-            var output = "That is, ";
+            var output = "Path -> ";
 
             for (var i = 0; i < path.PathNodes.Count; i++)
             {
@@ -35,13 +45,13 @@ namespace EulerProblem67
 
             Console.WriteLine(output);
             Console.WriteLine($"It tooked: {watch.ElapsedMilliseconds}ms");
-            Console.ReadLine();
+
+            Console.WriteLine("-----------------------------------------\n");
         }
 
-        private static int[] GetInputValues()
+        private static int[] GetInputValues(int problemNr)
         {
-            //var inputString = System.IO.File.ReadAllText(@"Inputs\Problem18.txt");
-            var inputString = System.IO.File.ReadAllText(@"Inputs\Problem67.txt");
+            var inputString = System.IO.File.ReadAllText($@"Inputs\Problem{problemNr}.txt");
             var input = Regex.Replace(inputString, @"\r\n?|\n", " ");
             input = Regex.Replace(input, "[ ]{2,}", " ");
 
